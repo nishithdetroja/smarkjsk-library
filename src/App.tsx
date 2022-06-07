@@ -1,12 +1,14 @@
 import React, { useState } from "react";
-// import { SmartjkcMask } from './inputs/SmartjkcMask';
-// import { SmartjkcUpDown } from './inputs/SmartjkcUpDown';
+import { SmartjkcMask } from './inputs/SmartjkcMask';
+import { SmartjkcUpDown } from './inputs/SmartjkcUpDown';
 import { SmartjkcNumeric } from './inputs/SmartjkcNumeric';
+import { SmartjkcVerticalMenu } from './components/SmartjkcVerticalMenu/SmartjkcVerticalMenu';
 
-import {
-  SmartjkcMask,
-  SmartjkcUpDown
-} from 'smartjkc';
+// import {
+//   SmartjkcMask,
+//   SmartjkcNumeric,
+//   SmartjkcUpDown
+// } from 'smartjkc';
 
 import "./App.css";
 
@@ -48,6 +50,36 @@ function App() {
     precision: 2
   });
 
+  const [settings3, setSettings3] = useState<any>({
+    json: [
+      {
+        label: "Main", menus: [
+          { name: 'Home', url: '/home', icon: 'fa fa-home' },
+          { name: 'Customer', url: '/customer', icon: 'fa fa-user' },
+          { name: 'Account', url: '/account', icon: 'fa fa-address-book-o' },
+          {
+            name: 'Bill', url: '/bill', icon: 'fa fa-book',
+            child: [
+              { name: 'New Bill', url: '/bill/newbill' },
+              { name: 'Approved Bill', url: '/bill/approvedbill' },
+              { name: 'Paid Bill', url: '/bill/paidbill' },
+              { name: 'Rejected Bill', url: '/bill/rejectedbill' }
+            ]
+          },
+        ]
+      },
+      {
+        label: "Devloper", menus: [
+          { name: 'Forms', url: '/forms' },
+          { name: 'Button', url: '/button' },
+          { name: 'Styles', url: '/style' },
+          { name: 'Alert', url: '/alerts' },
+          { name: 'Grid', url: '/grid' },
+        ]
+      }
+    ]
+  });
+
   const onChange = (event: any) => {
     setSettings((prevState: any) => {
       return { ...prevState, value: event.target.value };
@@ -66,9 +98,15 @@ function App() {
     });
   };
 
+  const onClick = (event: any) => {
+
+  }
   return (
     <div className="App">
       <div className="row m-5">
+        <div className="col-2">
+          <SmartjkcVerticalMenu settings={settings3} onClickEvent={onClick}></SmartjkcVerticalMenu>
+        </div>
         <div className="col-3">
           <SmartjkcMask name={"dob"} settings={settings} onChangeEvent={onChange}></SmartjkcMask>
         </div>
