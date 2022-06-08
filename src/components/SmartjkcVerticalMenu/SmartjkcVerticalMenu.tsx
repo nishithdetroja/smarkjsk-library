@@ -1,11 +1,10 @@
-import { AnyMxRecord } from 'dns';
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import "./SmartjkcVerticalmenu.css";
 
 export interface IVerticalMenuProps {
     settings: ISettingsProps;
-    onClickEvent: any;
+    onClickEvent?: any;
 };
 
 export interface ISettingsProps {
@@ -13,7 +12,9 @@ export interface ISettingsProps {
     navStyle: React.CSSProperties;
     labelStyle: React.CSSProperties;
     menuStyle: React.CSSProperties;
+    activeStyle: React.CSSProperties;
     subMenuStyle: React.CSSProperties;
+    activeStyleSubMenu: React.CSSProperties;
     iconStyle: React.CSSProperties;
     iconStyleSubMenu: React.CSSProperties;
 };
@@ -21,6 +22,11 @@ export interface ISettingsProps {
 export const SmartjkcVerticalMenu: React.FunctionComponent<IVerticalMenuProps> = props => {
 
     const { settings, onClickEvent } = props;
+    const [open, setOpen] = useState('');
+    const toggle = (id: any) => {
+        setOpen(id);
+        onClickEvent && onClickEvent(id);
+    };
 
     let navStyle: React.CSSProperties = {
         width: '100%',
@@ -44,6 +50,12 @@ export const SmartjkcVerticalMenu: React.FunctionComponent<IVerticalMenuProps> =
         color: '#fff',
         fontSize: '14px'
     };
+
+    let activeStyle: React.CSSProperties = {
+        backgroundColor: '#3EB489',
+        color: 'white'
+    };
+
     let subMenuStyle: React.CSSProperties = {
         display: 'block',
         backgroundColor: 'black',
@@ -51,6 +63,11 @@ export const SmartjkcVerticalMenu: React.FunctionComponent<IVerticalMenuProps> =
         padding: '8px 8px 8px 30px',
         color: '#fff',
         fontSize: '14px'
+    };
+
+    let activeStyleSubMenu: React.CSSProperties = {
+        backgroundColor: '#3EB489',
+        color: 'white'
     };
 
     let iconStyle: React.CSSProperties = {
@@ -76,21 +93,28 @@ export const SmartjkcVerticalMenu: React.FunctionComponent<IVerticalMenuProps> =
                                     element.menus.map((menu: any, j: any) => {
                                         return (
                                             <li key={j}>
-                                                <NavLink style={{ ...menuStyle, ...settings.menuStyle }} to={menu.url}>
-                                                    <i style={{ ...iconStyle, ...settings.iconStyle }} className={menu.icon || 'fa fa-home'}></i>{menu.name}</NavLink>
-                                                {(menu.child) &&
-                                                    <ul className="submenu">
-                                                        {
-                                                            menu.child.map((childmenu: any, k: any) => {
-                                                                return (
-                                                                    <li key={k}>
-                                                                        <NavLink style={{ ...subMenuStyle, ...settings.subMenuStyle }} to={childmenu.url}>
-                                                                            <i style={{ ...iconStyleSubmenu, ...settings.iconStyleSubMenu }} className={childmenu.icon || 'fa fa-circle-o'}></i>{childmenu.name}</NavLink>
-                                                                    </li>
-                                                                )
-                                                            })
-                                                        }
-                                                    </ul>
+                                                <NavLink style={({ isActive }) => isActive ? { ...menuStyle, ...settings.menuStyle, ...activeStyle, ...settings.activeStyle } : { ...menuStyle, ...settings.menuStyle }} to={menu.url}
+                                                    onClick={() => toggle(menu.name)} >
+                                                    <i style={{ ...iconStyle, ...settings.iconStyle }} className={menu.icon || 'fa fa-home'}></i>{menu.name}
+                                                    {(menu.child) && <span className="arrow"></span>}
+                                                </NavLink>
+                                                {
+                                                    (menu.child) && <>
+                                                        {open === menu.name && (
+                                                            <ul className="submenu">
+                                                                {
+                                                                    menu.child.map((childmenu: any, k: any) => {
+                                                                        return (
+                                                                            <li key={k}>
+                                                                                <NavLink style={({ isActive }) => isActive ? { ...subMenuStyle, ...settings.subMenuStyle, ...activeStyleSubMenu, ...settings.activeStyleSubMenu } : { ...subMenuStyle, ...settings.subMenuStyle }} to={childmenu.url}>
+                                                                                    <i style={{ ...iconStyleSubmenu, ...settings.iconStyleSubMenu }} className={childmenu.icon || 'fa fa-circle-o'}></i>{childmenu.name}</NavLink>
+                                                                            </li>
+                                                                        )
+                                                                    })
+                                                                }
+                                                            </ul>
+                                                        )}
+                                                    </>
                                                 }
                                             </li>
                                         )
@@ -101,6 +125,6 @@ export const SmartjkcVerticalMenu: React.FunctionComponent<IVerticalMenuProps> =
                     )
                 })
             }
-        </nav>
+        </nav >
     );
 };
