@@ -1,18 +1,23 @@
 import React, { useState } from "react";
-import { SmartjkcMask } from './inputs/SmartjkcMask';
-import { SmartjkcUpDown } from './inputs/SmartjkcUpDown';
-import { SmartjkcNumeric } from './inputs/SmartjkcNumeric';
-import { SmartjkcVerticalMenu } from './components/SmartjkcVerticalMenu/SmartjkcVerticalMenu';
+// import { SmartjkcMask } from './inputs/SmartjkcMask';
+// import { SmartjkcUpDown } from './inputs/SmartjkcUpDown';
+// import { SmartjkcNumeric } from './inputs/SmartjkcNumeric';
+// import { default as SmartjkcColorPicker } from './inputs/SmartjkcColorPicker';
+// import { SmartjkcVerticalMenu } from './components/SmartjkcVerticalMenu/SmartjkcVerticalMenu';
 
-// import {
-//   SmartjkcMask,
-//   SmartjkcNumeric,
-//   SmartjkcUpDown
-// } from 'smartjkc';
+
+
+import {
+  SmartjkcMask,
+  SmartjkcNumeric,
+  SmartjkcUpDown,
+  SmartjkcColorPicker,
+  SmartjkcVerticalMenu
+} from 'smartjkc';
 
 import "./App.css";
 
-function App() {
+const App = () => {
   const [settings, setSettings] = useState<any>({
     label: "Date Of Birth",
     value: "02/26/1992",
@@ -86,6 +91,14 @@ function App() {
     ]
   });
 
+  const [settings4, setSettings4] = useState<any>({
+    label: "Color Favourite",
+    value: "#3EB489",
+    className: "",
+    inputStyle: { borderColor: "#3EB489" },
+    labelStyle: { color: "#3EB489" }
+  });
+
   const onChange = (event: any) => {
     setSettings((prevState: any) => {
       return { ...prevState, value: event.target.value };
@@ -103,6 +116,11 @@ function App() {
       return { ...prevState, value: event };
     });
   };
+  const onChange4 = (event: any) => {
+    setSettings4((prevState: any) => {
+      return { ...prevState, value: event.target.value };
+    });
+  };
 
   const onClick = (event: any) => {
 
@@ -113,14 +131,21 @@ function App() {
         <div className="col-2">
           <SmartjkcVerticalMenu settings={settings3} onClickEvent={onClick}></SmartjkcVerticalMenu>
         </div>
-        <div className="col-3">
-          <SmartjkcMask name={"dob"} settings={settings} onChangeEvent={onChange}></SmartjkcMask>
-        </div>
-        <div className="col-3">
-          <SmartjkcNumeric name={"salary"} settings={settings1} onChangeEvent={onChange1}></SmartjkcNumeric>
-        </div>
-        <div className="col-3">
-          <SmartjkcUpDown name={"Age"} settings={settings2} onChangeEvent={onChange2}></SmartjkcUpDown>
+        <div className="col-10">
+          <div className="row">
+            <div className="col-3">
+              <SmartjkcMask name={"dob"} settings={settings} onChangeEvent={onChange}></SmartjkcMask>
+            </div>
+            <div className="col-3">
+              <SmartjkcNumeric name={"salary"} settings={settings1} onChangeEvent={onChange1}></SmartjkcNumeric>
+            </div>
+            <div className="col-3">
+              <SmartjkcUpDown name={"Age"} settings={settings2} onChangeEvent={onChange2}></SmartjkcUpDown>
+            </div>
+            <div className="col-3">
+              <SmartjkcColorPicker name={"Color"} settings={settings4} onChangeEvent={onChange4}></SmartjkcColorPicker>
+            </div>
+          </div>
         </div>
       </div>
     </div>
