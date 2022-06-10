@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import "./SmartjkcDatePicker.css";
 import moment from 'moment';
 
 export interface IInputDatePickerProps {
@@ -16,20 +17,30 @@ export interface IInputDatePickerProps {
 export interface ISettingsProps {
     id: string;
     label: string;
-    value: string;
+    value: Date;
     className: string;
     inputStyle: React.CSSProperties;
     labelStyle: React.CSSProperties;
     iconStyle: React.CSSProperties;
+    dateFormat: string;
+    minDate: Date,
+    maxDate: Date,
     disabled: boolean;
     readOnly: boolean;
     tabIndex: number;
     placeholder: string;
+    popperClassName: string;
+    popperPlacement: any;
+    showTimeSelect: boolean;
+    showTimeSelectOnly: boolean;
+    timeIntervals: number;
+    timeCaption: string;
 };
 
 const SmartjkcDatePicker: React.FunctionComponent<IInputDatePickerProps> = props => {
 
     const { name, settings, onChangeEvent, onBlurEvent, onFocusEvent, onKeyUpEvent, onKeyDownEvent } = props;
+    const datepickerRef = useRef(null);
 
     let labelStyle: React.CSSProperties = {
         marginBottom: '0px',
@@ -63,9 +74,13 @@ const SmartjkcDatePicker: React.FunctionComponent<IInputDatePickerProps> = props
                 id={settings.id ? settings.id : name}
                 name={name}
                 tabIndex={settings.tabIndex ? settings.tabIndex : undefined}
+                placeholderText={settings.placeholder ? settings.placeholder : undefined}
                 disabled={settings.disabled ? settings.disabled : false}
                 readOnly={settings.readOnly ? settings.readOnly : false}
-                value={moment(settings?.value).format('MM/DD/YYYY')}
+                selected={settings.value}
+                dateFormat={settings.dateFormat ? settings.dateFormat : 'MM/dd/yyyy'}
+                minDate={settings.minDate ? settings.minDate : undefined}
+                maxDate={settings.maxDate ? settings.maxDate : undefined}
                 customInput={
                     <input type="text" id={settings.id ? settings.id : name}
                         name={name} style={{ ...inputStyle, ...settings.inputStyle }} />
@@ -75,8 +90,18 @@ const SmartjkcDatePicker: React.FunctionComponent<IInputDatePickerProps> = props
                 onBlur={onBlurEvent}
                 onFocus={onFocusEvent}
                 onKeyDown={onKeyDownEvent}
+                ref={datepickerRef}
+                popperClassName={settings.popperClassName ? settings.popperClassName : undefined}
+                popperPlacement={settings.popperPlacement ? settings.popperPlacement : undefined}
+                showTimeSelect={settings.showTimeSelect ? settings.showTimeSelect : false}
+                showTimeSelectOnly={settings.showTimeSelectOnly ? settings.showTimeSelectOnly : false}
+                timeIntervals={settings.timeIntervals ? settings.timeIntervals : undefined}
+                timeCaption={settings.timeCaption ? settings.timeCaption : undefined}
             ></DatePicker>
-            <i className='fa fa-calendar' style={{ ...iconStyle, ...settings.iconStyle }}></i>
+            <i className={settings.showTimeSelectOnly ? 'fa fa-clock-o' : 'fa fa-calendar'} style={{ ...iconStyle, ...settings.iconStyle }} onClick={() => {
+                const datepickerElement: any = datepickerRef.current;
+                datepickerElement.setFocus(true);
+            }} ></i>
         </div>
     );
 };

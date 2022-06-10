@@ -96,11 +96,25 @@ const App = () => {
   });
   const [settings5, setSettings5] = useState<any>({
     label: "Policy Date",
-    value: "06/18/2022",
+    value: new Date(),
     className: "",
     inputStyle: { borderColor: "#3EB489" },
     labelStyle: { color: "#3EB489" }
   });
+  const [settings6, setSettings6] = useState<any>({
+    label: "Metting Time",
+    value: new Date(),
+    className: "",
+    inputStyle: { borderColor: "#3EB489" },
+    labelStyle: { color: "#3EB489" },
+    dateFormat: "h:mm aa",
+    showTimeSelect: true,
+    showTimeSelectOnly: true,
+    timeCaption: "Nishith",
+    timeIntervals: 10,
+    popperPlacement: 'bottom'
+  });
+
   const onChange = (event: any) => {
     setSettings((prevState: any) => {
       return { ...prevState, value: event.target.value };
@@ -123,6 +137,11 @@ const App = () => {
   };
   const onChange5 = (event: any) => {
     setSettings5((prevState: any) => {
+      return { ...prevState, value: event };
+    });
+  };
+  const onChange6 = (event: any) => {
+    setSettings6((prevState: any) => {
       return { ...prevState, value: event };
     });
   };
@@ -151,6 +170,9 @@ const App = () => {
             </div>
             <div className="col-3 mt-2">
               <SmartjkcDatePicker name={"Policy Date"} settings={settings5} onChangeEvent={onChange5}></SmartjkcDatePicker>
+            </div>
+            <div className="col-3 mt-2">
+              <SmartjkcDatePicker name={"Mettings Time"} settings={settings6} onChangeEvent={onChange6}></SmartjkcDatePicker>
             </div>
           </div>
         </div>
