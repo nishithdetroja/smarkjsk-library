@@ -3,9 +3,9 @@ import React, { useState } from "react";
 // import { SmartjkcUpDown } from './inputs/SmartjkcUpDown';
 // import { SmartjkcNumeric } from './inputs/SmartjkcNumeric';
 // import { default as SmartjkcColorPicker } from './inputs/SmartjkcColorPicker';
+import { default as SmartjkcDatePicker } from './inputs/SmartjkcDatePicker';
+
 // import { SmartjkcVerticalMenu } from './components/SmartjkcVerticalMenu/SmartjkcVerticalMenu';
-
-
 
 import {
   SmartjkcMask,
@@ -28,7 +28,6 @@ const App = () => {
     maskPlaceholder: "#",
     alwaysShowMask: true,
   });
-
   const [settings1, setSettings1] = useState<any>({
     label: "Salary",
     value: '25000',
@@ -42,7 +41,6 @@ const App = () => {
     inputStyle: { borderColor: "#3EB489" },
     labelStyle: { color: "#3EB489" }
   });
-
   const [settings2, setSettings2] = useState<any>({
     label: "Percentages",
     value: "40",
@@ -54,7 +52,6 @@ const App = () => {
     step: 0.5,
     precision: 2
   });
-
   const [settings3, setSettings3] = useState<any>({
     json: [
       {
@@ -90,7 +87,6 @@ const App = () => {
       }
     ]
   });
-
   const [settings4, setSettings4] = useState<any>({
     label: "Color Favourite",
     value: "#3EB489",
@@ -98,19 +94,23 @@ const App = () => {
     inputStyle: { borderColor: "#3EB489" },
     labelStyle: { color: "#3EB489" }
   });
-
+  const [settings5, setSettings5] = useState<any>({
+    label: "Policy Date",
+    value: "06/18/2022",
+    className: "",
+    inputStyle: { borderColor: "#3EB489" },
+    labelStyle: { color: "#3EB489" }
+  });
   const onChange = (event: any) => {
     setSettings((prevState: any) => {
       return { ...prevState, value: event.target.value };
     });
   };
-
   const onChange1 = (event: any) => {
     setSettings1((prevState: any) => {
       return { ...prevState, value: event };
     });
   };
-
   const onChange2 = (event: any) => {
     setSettings2((prevState: any) => {
       return { ...prevState, value: event };
@@ -121,7 +121,11 @@ const App = () => {
       return { ...prevState, value: event.target.value };
     });
   };
-
+  const onChange5 = (event: any) => {
+    setSettings5((prevState: any) => {
+      return { ...prevState, value: event };
+    });
+  };
   const onClick = (event: any) => {
 
   }
@@ -144,6 +148,9 @@ const App = () => {
             </div>
             <div className="col-3">
               <SmartjkcColorPicker name={"Color"} settings={settings4} onChangeEvent={onChange4}></SmartjkcColorPicker>
+            </div>
+            <div className="col-3 mt-2">
+              <SmartjkcDatePicker name={"Policy Date"} settings={settings5} onChangeEvent={onChange5}></SmartjkcDatePicker>
             </div>
           </div>
         </div>
