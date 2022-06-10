@@ -3,8 +3,7 @@ import React, { useState } from "react";
 // import { SmartjkcUpDown } from './inputs/SmartjkcUpDown';
 // import { SmartjkcNumeric } from './inputs/SmartjkcNumeric';
 // import { default as SmartjkcColorPicker } from './inputs/SmartjkcColorPicker';
-import { default as SmartjkcDatePicker } from './inputs/SmartjkcDatePicker';
-
+// import { default as SmartjkcDatePicker } from './inputs/SmartjkcDatePicker';
 // import { SmartjkcVerticalMenu } from './components/SmartjkcVerticalMenu/SmartjkcVerticalMenu';
 
 import {
@@ -12,6 +11,7 @@ import {
   SmartjkcNumeric,
   SmartjkcUpDown,
   SmartjkcColorPicker,
+  SmartjkcDatePicker,
   SmartjkcVerticalMenu
 } from 'smartjkc';
 
@@ -110,7 +110,7 @@ const App = () => {
     dateFormat: "h:mm aa",
     showTimeSelect: true,
     showTimeSelectOnly: true,
-    timeCaption: "Nishith",
+    timeCaption: "Time",
     timeIntervals: 10,
     popperPlacement: 'bottom'
   });
