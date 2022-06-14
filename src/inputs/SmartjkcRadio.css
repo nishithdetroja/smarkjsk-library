@@ -1,0 +1,40 @@
+
+:root{
+  --smartjkc-radio-checked-color: red;
+}
+
+.samrtjkcradiobutton label {
+    clear: none;
+    padding: 0px 8px 0px 4px;
+    margin-bottom: 0px;
+    vertical-align: middle;
+}
+
+.samrtjkcradiobutton input[type=radio] {
+      vertical-align: middle;
+      visibility: hidden;
+}
+
+.samrtjkcradiobutton  [type="radio"]::before {
+  border: 1px solid gray;
+  height: 14px;
+  width: 14px;
+  border-radius: 50%;
+  display: block;
+  content: " ";
+  cursor: pointer;
+  visibility: visible;
+}
+ 
+
+  .samrtjkcradiobutton  [type="radio"]:checked::before { 
+    border: 1px solid gray;
+    height: 14px;
+    width: 14px;
+    border-radius: 50%;
+    display: block;
+    content: " ";
+    cursor: pointer;
+    visibility: visible;
+    background: radial-gradient( var(--smartjkc-radio-checked-color) 35%, transparent 50%);
+  } 

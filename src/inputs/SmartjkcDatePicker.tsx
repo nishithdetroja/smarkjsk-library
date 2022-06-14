@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./SmartjkcDatePicker.css";
-import moment from 'moment';
+// import moment from 'moment';
 
 export interface IInputDatePickerProps {
     name: string;
