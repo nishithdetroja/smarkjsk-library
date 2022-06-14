@@ -12,6 +12,7 @@
     "@types/react-dom": "^18.0.5",
     "@types/react-input-mask": "^2.0.4",
     "@types/react-numeric-input": "^2.2.4",
+    "axios": "^0.27.2",
     "react": "^18.1.0",
     "react-currency-input-field": "^3.6.4",
     "react-dom": "^18.1.0",
