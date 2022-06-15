@@ -4,8 +4,8 @@ import React, { useState } from "react";
 // import { SmartjkcNumeric } from './inputs/SmartjkcNumeric';
 // import { default as SmartjkcColorPicker } from './inputs/SmartjkcColorPicker';
 // import { default as SmartjkcDatePicker } from './inputs/SmartjkcDatePicker';
-import { default as SmartjkcRadio } from './inputs/SmartjkcRadio';
-import { default as SmartjkcCheckbox } from './inputs/SmartjkcCheckbox';
+// import { default as SmartjkcRadio } from './inputs/SmartjkcRadio';
+// import { default as SmartjkcCheckbox } from './inputs/SmartjkcCheckbox';
 // import { SmartjkcVerticalMenu } from './components/SmartjkcVerticalMenu/SmartjkcVerticalMenu';
 
 import {
@@ -14,6 +14,8 @@ import {
   SmartjkcUpDown,
   SmartjkcColorPicker,
   SmartjkcDatePicker,
+  SmartjkcRadio,
+  SmartjkcCheckbox,
   SmartjkcVerticalMenu
 } from 'smartjkc';
 
@@ -137,7 +139,10 @@ const App = () => {
     className: "",
     inputStyle: { borderColor: "#3EB489" },
     labelStyle: { color: "#3EB489" },
-    pointerColor: "#3EB489"
+    // radioLabelStyle: {padding: '5px 10px 5px 10px',verticalAlign: 'top'},
+    pointerColor: "#3EB489",
+    // pointerHeight: '20px',
+    // pointerWidth: '20px'
   });
   const [settings8, setSettings8] = useState<any>({
     label: "Hobbies",
@@ -164,6 +169,64 @@ const App = () => {
     inputStyle: { borderColor: "#3EB489" },
     labelStyle: { color: "#3EB489" },
     pointerColor: "#3EB489"
+  });
+  const [settings9, setSettings9] = useState<any>({
+    label: "Gender",
+    value: "M1",
+    inline: true,
+    json: [
+      {
+        name: 'Male',
+        value: 'M1'
+      },
+      {
+        name: 'Female',
+        value: 'F1'
+      },
+      {
+        name: 'Unisex',
+        value: 'U1'
+      }
+    ],
+    className: "",
+    inputStyle: { borderColor: "#3EB489" },
+    labelStyle: { color: "#3EB489" },
+    radioLabelStyle: {padding: '5px 10px 5px 10px',verticalAlign: 'top'},
+    pointerColor: "#3EB489",
+    radioHeight: '20px',
+    radioWidth: '20px'
+  });
+  const [settings10, setSettings10] = useState<any>({
+    label: "Hobbies",
+    value: "cricket",
+    inline: true,
+    json: [
+      {
+        name: 'Circket',
+        value: 'cricket1',
+        checked: true,
+      },
+      {
+        name: 'Football',
+        value: 'football1',
+        checked: true,
+      },
+      {
+        name: 'Chess',
+        value: 'chess1',
+        checked: false
+      }
+    ],
+    className: "",
+    inputStyle: { borderColor: "#3EB489" },
+    labelStyle: { color: "#3EB489" },
+    checkboxLabelStyle: {padding: '5px 10px 5px 10px',verticalAlign: 'middle'},
+    pointerColor: "#3EB489",
+    pointerHeight: "14px",
+    pointerWidth: "7px",
+    pointerMargin: "1px 7px",
+    checkboxHeight: '20px',
+    checkboxWidth: '20px'
   });
   const onChange = (event: any) => {
     setSettings((prevState: any) => {
@@ -210,6 +273,21 @@ const App = () => {
       return { ...prevState, json: json };
     });
   };
+  const onChange9 = (event: any) => {
+    setSettings9((prevState: any) => {
+      return { ...prevState, value: event.target.value };
+    });
+  };
+  const onChange10 = (event: any) => {
+    let json = [...settings10.json];
+    json.map(res => {
+      if (res.value == event.target.value)
+        res.checked = event.target.checked;
+    })
+    setSettings10((prevState: any) => {
+      return { ...prevState, json: json };
+    });
+  };
   const onClick = (event: any) => {
 
   }
@@ -244,6 +322,12 @@ const App = () => {
             </div>
             <div className="col-3 mt-2">
               <SmartjkcCheckbox name={"gender"} settings={settings8} onChangeEvent={onChange8}></SmartjkcCheckbox>
+            </div>
+            <div className="col-3 mt-2">
+              <SmartjkcRadio name={"gender1"} settings={settings9} onChangeEvent={onChange9}></SmartjkcRadio>
+            </div>
+            <div className="col-4 mt-2">
+              <SmartjkcCheckbox name={"gender2"} settings={settings10} onChangeEvent={onChange10}></SmartjkcCheckbox>
             </div>
           </div>
         </div>

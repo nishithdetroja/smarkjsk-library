@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import "./SmartjkcRadio.css";
 
 
@@ -17,12 +17,19 @@ export interface ISettingsProps {
     json: any[];
     inputStyle: React.CSSProperties;
     labelStyle: React.CSSProperties;
+    radioLabelStyle: React.CSSProperties;
     pointerColor: string;
+    radioCheckedBorderColor: string;
+    radioUncheckedBorderColor: string;
+    radioBorder: string;
+    radioHeight: string;
+    radioWidth: string;
 };
 
 const SmartjkcRadio: React.FunctionComponent<IInputRadioProps> = props => {
 
     const { name, settings, onChangeEvent } = props;
+    const ref = useRef<any>();
 
     let labelStyle: React.CSSProperties = {
         marginBottom: '0px',
@@ -42,12 +49,36 @@ const SmartjkcRadio: React.FunctionComponent<IInputRadioProps> = props => {
         outline: 'none'
     };
 
+    let radioLabelStyle: React.CSSProperties = {
+        clear: 'none',
+        padding: '0px 8px 0px 4px',
+        marginBottom: '0px',
+        verticalAlign: 'middle'
+    };
+
     useEffect(() => {
-        document.documentElement.style.setProperty('--smartjkc-radio-checked-color', settings.pointerColor);
+        if (settings.pointerColor) {
+            ref.current.style.setProperty('--smartjkc-radio-checked-color', settings.pointerColor);
+        }
+        if (settings.radioCheckedBorderColor) {
+            ref.current.style.setProperty('--smartjkc-radio-checked-border-color', settings.radioCheckedBorderColor);
+        }
+        if (settings.radioUncheckedBorderColor) {
+            ref.current.style.setProperty('--smartjkc-radio-unchecked-border-color', settings.radioUncheckedBorderColor);
+        }
+        if (settings.radioBorder) {
+            ref.current.style.setProperty('--smartjkc-radio-border', settings.radioBorder);
+        }
+        if (settings.radioHeight) {
+            ref.current.style.setProperty('--smartjkc-radio-height', settings.radioHeight);
+        }
+        if (settings.radioWidth) {
+            ref.current.style.setProperty('--smartjkc-radio-width', settings.radioWidth);
+        }
     }, [])
 
     return (
-        <div>
+        <div ref={ref}>
             <label style={{ ...labelStyle, ...settings.labelStyle }} htmlFor={name}>{settings.label ? settings.label : 'Label'}</label>
             <div style={{ ...inputStyle, ...settings.inputStyle }} >
                 {
@@ -62,7 +93,7 @@ const SmartjkcRadio: React.FunctionComponent<IInputRadioProps> = props => {
                                     checked={settings.value === element.value}
                                     value={element.value}
                                     id={element.value} />
-                                <label htmlFor={element.value}>{element.name}</label>
+                                <label style={{ ...radioLabelStyle, ...settings.radioLabelStyle }} htmlFor={element.value}>{element.name}</label>
                             </div>
                         )
                     })
