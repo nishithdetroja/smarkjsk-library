@@ -13,11 +13,8 @@
     "@types/react-dom": "^18.0.5",
     "@types/react-input-mask": "^2.0.4",
     "@types/react-numeric-input": "^2.2.4",
-<<<<<<< HEAD
     "axios": "^0.27.2",
-=======
     "moment": "^2.29.3",
->>>>>>> c0c623d8ef39ab2fbde031fec57f5272a57387b4
     "react": "^18.1.0",
     "react-currency-input-field": "^3.6.4",
     "react-datepicker": "^4.8.0",
