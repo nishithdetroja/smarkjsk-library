@@ -9,19 +9,25 @@
     "@types/jest": "^27.5.2",
     "@types/node": "^16.11.38",
     "@types/react": "^18.0.12",
+    "@types/react-datepicker": "^4.4.2",
     "@types/react-dom": "^18.0.5",
     "@types/react-input-mask": "^2.0.4",
     "@types/react-numeric-input": "^2.2.4",
+<<<<<<< HEAD
     "axios": "^0.27.2",
+=======
+    "moment": "^2.29.3",
+>>>>>>> c0c623d8ef39ab2fbde031fec57f5272a57387b4
     "react": "^18.1.0",
     "react-currency-input-field": "^3.6.4",
+    "react-datepicker": "^4.8.0",
     "react-dom": "^18.1.0",
     "react-input-color": "^4.0.0",
     "react-input-mask": "^2.0.4",
     "react-numeric-input": "^2.2.3",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
-    "smartjkc": "^0.0.3",
+    "smartjkc": "^0.0.5",
     "typescript": "^4.7.3",
     "web-vitals": "^2.1.4"
   },

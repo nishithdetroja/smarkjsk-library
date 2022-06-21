@@ -3,15 +3,19 @@ import React, { useState } from "react";
 // import { SmartjkcUpDown } from './inputs/SmartjkcUpDown';
 // import { SmartjkcNumeric } from './inputs/SmartjkcNumeric';
 // import { default as SmartjkcColorPicker } from './inputs/SmartjkcColorPicker';
+// import { default as SmartjkcDatePicker } from './inputs/SmartjkcDatePicker';
+// import { default as SmartjkcRadio } from './inputs/SmartjkcRadio';
+// import { default as SmartjkcCheckbox } from './inputs/SmartjkcCheckbox';
 // import { SmartjkcVerticalMenu } from './components/SmartjkcVerticalMenu/SmartjkcVerticalMenu';
-
-
 
 import {
   SmartjkcMask,
   SmartjkcNumeric,
   SmartjkcUpDown,
   SmartjkcColorPicker,
+  SmartjkcDatePicker,
+  SmartjkcRadio,
+  SmartjkcCheckbox,
   SmartjkcVerticalMenu
 } from 'smartjkc';
 
@@ -28,7 +32,6 @@ const App = () => {
     maskPlaceholder: "#",
     alwaysShowMask: true,
   });
-
   const [settings1, setSettings1] = useState<any>({
     label: "Salary",
     value: '25000',
@@ -42,7 +45,6 @@ const App = () => {
     inputStyle: { borderColor: "#3EB489" },
     labelStyle: { color: "#3EB489" }
   });
-
   const [settings2, setSettings2] = useState<any>({
     label: "Percentages",
     value: "40",
@@ -54,7 +56,6 @@ const App = () => {
     step: 0.5,
     precision: 2
   });
-
   const [settings3, setSettings3] = useState<any>({
     json: [
       {
@@ -90,7 +91,6 @@ const App = () => {
       }
     ]
   });
-
   const [settings4, setSettings4] = useState<any>({
     label: "Color Favourite",
     value: "#3EB489",
@@ -98,19 +98,146 @@ const App = () => {
     inputStyle: { borderColor: "#3EB489" },
     labelStyle: { color: "#3EB489" }
   });
-
+  const [settings5, setSettings5] = useState<any>({
+    label: "Policy Date",
+    value: new Date(),
+    className: "",
+    inputStyle: { borderColor: "#3EB489" },
+    labelStyle: { color: "#3EB489" }
+  });
+  const [settings6, setSettings6] = useState<any>({
+    label: "Metting Time",
+    value: new Date(),
+    className: "",
+    inputStyle: { borderColor: "#3EB489" },
+    labelStyle: { color: "#3EB489" },
+    dateFormat: "h:mm aa",
+    showTimeSelect: true,
+    showTimeSelectOnly: true,
+    timeCaption: "Time",
+    timeIntervals: 10,
+    popperPlacement: 'bottom'
+  });
+  const [settings7, setSettings7] = useState<any>({
+    label: "Gender",
+    value: "M",
+    inline: true,
+    json: [
+      {
+        name: 'Male',
+        value: 'M'
+      },
+      {
+        name: 'Female',
+        value: 'F'
+      },
+      {
+        name: 'Unisex',
+        value: 'U'
+      }
+    ],
+    className: "",
+    inputStyle: { borderColor: "#3EB489" },
+    labelStyle: { color: "#3EB489" },
+    // radioLabelStyle: {padding: '5px 10px 5px 10px',verticalAlign: 'top'},
+    pointerColor: "#3EB489",
+    // pointerHeight: '20px',
+    // pointerWidth: '20px'
+  });
+  const [settings8, setSettings8] = useState<any>({
+    label: "Hobbies",
+    value: "cricket",
+    inline: true,
+    json: [
+      {
+        name: 'Circket',
+        value: 'cricket',
+        checked: true,
+      },
+      {
+        name: 'Football',
+        value: 'football',
+        checked: false,
+      },
+      {
+        name: 'Chess',
+        value: 'chess',
+        checked: false
+      }
+    ],
+    className: "",
+    inputStyle: { borderColor: "#3EB489" },
+    labelStyle: { color: "#3EB489" },
+    pointerColor: "#3EB489"
+  });
+  const [settings9, setSettings9] = useState<any>({
+    label: "Gender",
+    value: "M1",
+    inline: true,
+    json: [
+      {
+        name: 'Male',
+        value: 'M1'
+      },
+      {
+        name: 'Female',
+        value: 'F1'
+      },
+      {
+        name: 'Unisex',
+        value: 'U1'
+      }
+    ],
+    className: "",
+    inputStyle: { borderColor: "#3EB489" },
+    labelStyle: { color: "#3EB489" },
+    radioLabelStyle: {padding: '5px 10px 5px 10px',verticalAlign: 'top'},
+    pointerColor: "#3EB489",
+    radioHeight: '20px',
+    radioWidth: '20px'
+  });
+  const [settings10, setSettings10] = useState<any>({
+    label: "Hobbies",
+    value: "cricket",
+    inline: true,
+    json: [
+      {
+        name: 'Circket',
+        value: 'cricket1',
+        checked: true,
+      },
+      {
+        name: 'Football',
+        value: 'football1',
+        checked: true,
+      },
+      {
+        name: 'Chess',
+        value: 'chess1',
+        checked: false
+      }
+    ],
+    className: "",
+    inputStyle: { borderColor: "#3EB489" },
+    labelStyle: { color: "#3EB489" },
+    checkboxLabelStyle: {padding: '5px 10px 5px 10px',verticalAlign: 'middle'},
+    pointerColor: "#3EB489",
+    pointerHeight: "14px",
+    pointerWidth: "7px",
+    pointerMargin: "1px 7px",
+    checkboxHeight: '20px',
+    checkboxWidth: '20px'
+  });
   const onChange = (event: any) => {
     setSettings((prevState: any) => {
       return { ...prevState, value: event.target.value };
     });
   };
-
   const onChange1 = (event: any) => {
     setSettings1((prevState: any) => {
       return { ...prevState, value: event };
     });
   };
-
   const onChange2 = (event: any) => {
     setSettings2((prevState: any) => {
       return { ...prevState, value: event };
@@ -121,7 +248,46 @@ const App = () => {
       return { ...prevState, value: event.target.value };
     });
   };
-
+  const onChange5 = (event: any) => {
+    setSettings5((prevState: any) => {
+      return { ...prevState, value: event };
+    });
+  };
+  const onChange6 = (event: any) => {
+    setSettings6((prevState: any) => {
+      return { ...prevState, value: event };
+    });
+  };
+  const onChange7 = (event: any) => {
+    setSettings7((prevState: any) => {
+      return { ...prevState, value: event.target.value };
+    });
+  };
+  const onChange8 = (event: any) => {
+    let json = [...settings8.json];
+    json.map(res => {
+      if (res.value == event.target.value)
+        res.checked = event.target.checked;
+    })
+    setSettings8((prevState: any) => {
+      return { ...prevState, json: json };
+    });
+  };
+  const onChange9 = (event: any) => {
+    setSettings9((prevState: any) => {
+      return { ...prevState, value: event.target.value };
+    });
+  };
+  const onChange10 = (event: any) => {
+    let json = [...settings10.json];
+    json.map(res => {
+      if (res.value == event.target.value)
+        res.checked = event.target.checked;
+    })
+    setSettings10((prevState: any) => {
+      return { ...prevState, json: json };
+    });
+  };
   const onClick = (event: any) => {
 
   }
@@ -144,6 +310,24 @@ const App = () => {
             </div>
             <div className="col-3">
               <SmartjkcColorPicker name={"Color"} settings={settings4} onChangeEvent={onChange4}></SmartjkcColorPicker>
+            </div>
+            <div className="col-3 mt-2">
+              <SmartjkcDatePicker name={"Policy Date"} settings={settings5} onChangeEvent={onChange5}></SmartjkcDatePicker>
+            </div>
+            <div className="col-3 mt-2">
+              <SmartjkcDatePicker name={"Mettings Time"} settings={settings6} onChangeEvent={onChange6}></SmartjkcDatePicker>
+            </div>
+            <div className="col-3 mt-2">
+              <SmartjkcRadio name={"gender"} settings={settings7} onChangeEvent={onChange7}></SmartjkcRadio>
+            </div>
+            <div className="col-3 mt-2">
+              <SmartjkcCheckbox name={"gender"} settings={settings8} onChangeEvent={onChange8}></SmartjkcCheckbox>
+            </div>
+            <div className="col-3 mt-2">
+              <SmartjkcRadio name={"gender1"} settings={settings9} onChangeEvent={onChange9}></SmartjkcRadio>
+            </div>
+            <div className="col-4 mt-2">
+              <SmartjkcCheckbox name={"gender2"} settings={settings10} onChangeEvent={onChange10}></SmartjkcCheckbox>
             </div>
           </div>
         </div>
