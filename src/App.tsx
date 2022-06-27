@@ -1,34 +1,34 @@
 import React, { useState } from "react";
-// import { SmartjkcMask } from './inputs/SmartjkcMask';
-// import { SmartjkcUpDown } from './inputs/SmartjkcUpDown';
-// import { SmartjkcNumeric } from './inputs/SmartjkcNumeric';
-// import { default as SmartjkcColorPicker } from './inputs/SmartjkcColorPicker';
-// import { default as SmartjkcDatePicker } from './inputs/SmartjkcDatePicker';
-// import { default as SmartjkcRadio } from './inputs/SmartjkcRadio';
-// import { default as SmartjkcCheckbox } from './inputs/SmartjkcCheckbox';
-// import { SmartjkcVerticalMenu } from './components/SmartjkcVerticalMenu/SmartjkcVerticalMenu';
+import { SmartjkcMask } from './inputs/SmartjkcMask';
+import { SmartjkcUpDown } from './inputs/SmartjkcUpDown';
+import { default as SmartjkcColorPicker } from './inputs/SmartjkcColorPicker';
+import { default as SmartjkcDatePicker } from './inputs/SmartjkcDatePicker';
+import { default as SmartjkcRadio } from './inputs/SmartjkcRadio';
+import { default as SmartjkcCheckbox } from './inputs/SmartjkcCheckbox';
+import { SmartjkcVerticalMenu } from './components/SmartjkcVerticalMenu/SmartjkcVerticalMenu';
 
-import {
-  SmartjkcMask,
-  SmartjkcNumeric,
-  SmartjkcUpDown,
-  SmartjkcColorPicker,
-  SmartjkcDatePicker,
-  SmartjkcRadio,
-  SmartjkcCheckbox,
-  SmartjkcVerticalMenu
-} from 'smartjkc';
+// import {
+//   SmartjkcMask,
+//   SmartjkcNumeric,
+//   SmartjkcUpDown,
+//   SmartjkcColorPicker,
+//   SmartjkcDatePicker,
+//   SmartjkcRadio,
+//   SmartjkcCheckbox,
+//   SmartjkcVerticalMenu
+// } from 'smartjkc';
 
 import "./App.css";
+import { JkcInput } from "./inputs/JksInput";
 
 const App = () => {
   const [settings, setSettings] = useState<any>({
-    label: "Date Of Birth",
-    value: "02/26/1992",
+    label: "Phone Number",
+    value: "(123)-456-7890",
     className: "",
     inputStyle: { borderColor: "#3EB489" },
     labelStyle: { color: "#3EB489" },
-    mask: "99/99/9999",
+    mask: "(999)-999-9999",
     maskPlaceholder: "#",
     alwaysShowMask: true,
   });
@@ -132,8 +132,8 @@ const App = () => {
         value: 'F'
       },
       {
-        name: 'Unisex',
-        value: 'U'
+        name: 'Other',
+        value: 'O'
       }
     ],
     className: "",
@@ -228,6 +228,35 @@ const App = () => {
     checkboxHeight: '20px',
     checkboxWidth: '20px'
   });
+  const [settings11, setSettings11] = useState<any>({
+    label: "Country",
+    value: "India",
+    json: [
+      {
+        value: 'India',
+        label: 'India'
+      },
+      {
+        value: 'USA',
+        label: 'USA'
+      },
+      {
+        value: 'UK',
+        label: 'UK'
+      }
+    ],
+    className: "",
+    inputStyle: { borderColor: "#3EB489" },
+    labelStyle: { color: "#3EB489" },
+    placeholder: "Select Country"
+  });
+  const [settings12, setSettings12] = useState<any>({
+    label: "Full Name",
+    value: "Smart Name",
+    className: "",
+    inputStyle: { borderColor: "#3EB489" },
+    labelStyle: { color: "#3EB489" }
+  });
   const onChange = (event: any) => {
     setSettings((prevState: any) => {
       return { ...prevState, value: event.target.value };
@@ -288,6 +317,16 @@ const App = () => {
       return { ...prevState, json: json };
     });
   };
+  const onChange11 = (event: any) => {
+    setSettings11((prevState: any) => {
+      return { ...prevState, value: event.target.value };
+    });
+  };
+  const onChange12 = (event: any) => {
+    setSettings12((prevState: any) => {
+      return { ...prevState, value: event.target.value };
+    });
+  };
   const onClick = (event: any) => {
 
   }
@@ -299,35 +338,35 @@ const App = () => {
         </div>
         <div className="col-10">
           <div className="row">
-            <div className="col-3">
-              <SmartjkcMask name={"dob"} settings={settings} onChangeEvent={onChange}></SmartjkcMask>
-            </div>
-            <div className="col-3">
-              <SmartjkcNumeric name={"salary"} settings={settings1} onChangeEvent={onChange1}></SmartjkcNumeric>
-            </div>
-            <div className="col-3">
-              <SmartjkcUpDown name={"Age"} settings={settings2} onChangeEvent={onChange2}></SmartjkcUpDown>
-            </div>
-            <div className="col-3">
-              <SmartjkcColorPicker name={"Color"} settings={settings4} onChangeEvent={onChange4}></SmartjkcColorPicker>
+            <div className="col-3 mt-2">
+              <JkcInput type={'text'} name={"firstName"} settings={settings12} onChangeEvent={onChange12}></JkcInput>
             </div>
             <div className="col-3 mt-2">
-              <SmartjkcDatePicker name={"Policy Date"} settings={settings5} onChangeEvent={onChange5}></SmartjkcDatePicker>
+              <JkcInput type={'mask'} name={"dob"} settings={settings} onChangeEvent={onChange}></JkcInput>
             </div>
             <div className="col-3 mt-2">
-              <SmartjkcDatePicker name={"Mettings Time"} settings={settings6} onChangeEvent={onChange6}></SmartjkcDatePicker>
+              <JkcInput type={'number'} name={"salary"} settings={settings1} onChangeEvent={onChange1}></JkcInput>
             </div>
             <div className="col-3 mt-2">
-              <SmartjkcRadio name={"gender"} settings={settings7} onChangeEvent={onChange7}></SmartjkcRadio>
+              <JkcInput type={'updown'} name={"Age"} settings={settings2} onChangeEvent={onChange2}></JkcInput>
             </div>
             <div className="col-3 mt-2">
-              <SmartjkcCheckbox name={"gender"} settings={settings8} onChangeEvent={onChange8}></SmartjkcCheckbox>
+              <JkcInput type={'color'} name={"Color"} settings={settings4} onChangeEvent={onChange4}></JkcInput>
             </div>
             <div className="col-3 mt-2">
-              <SmartjkcRadio name={"gender1"} settings={settings9} onChangeEvent={onChange9}></SmartjkcRadio>
+              <JkcInput type={'date'} name={"PolicyDate"} settings={settings5} onChangeEvent={onChange5}></JkcInput>
             </div>
-            <div className="col-4 mt-2">
-              <SmartjkcCheckbox name={"gender2"} settings={settings10} onChangeEvent={onChange10}></SmartjkcCheckbox>
+            <div className="col-3 mt-2">
+              <JkcInput type={'date'} name={"Mettings Time"} settings={settings6} onChangeEvent={onChange6}></JkcInput>
+            </div>
+            <div className="col-3 mt-2">
+              <JkcInput type={'radio'} name={"gender"} settings={settings7} onChangeEvent={onChange7}></JkcInput>
+            </div>
+            <div className="col-3 mt-2">
+              <JkcInput type={'checkbox'} name={"gender"} settings={settings8} onChangeEvent={onChange8}></JkcInput>
+            </div>
+            <div className="col-3 mt-2">
+              <JkcInput type={'select'} name={"country"} settings={settings11} onChangeEvent={onChange11}></JkcInput>
             </div>
           </div>
         </div>

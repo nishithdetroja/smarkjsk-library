@@ -45,10 +45,11 @@ export const SmartjkcUpDown: React.FunctionComponent<IInputMaskProps> = props =>
     let inputStyle: React.CSSProperties = {
         width: '100%',
         height: '40px',
-        padding: '10px 0px 0px 5px',
+        padding: '10px 25px 0px 5px',
         fontSize: '15px',
         border: '1px solid',
         outline: 'none',
+        textAlign: 'right'
     };
 
 

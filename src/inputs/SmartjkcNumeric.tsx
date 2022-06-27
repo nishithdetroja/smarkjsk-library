@@ -53,10 +53,11 @@ export const SmartjkcNumeric: React.FunctionComponent<IInputMaskProps> = props =
     let inputStyle: React.CSSProperties = {
         width: '100%',
         height: '40px',
-        padding: '10px 0px 0px 5px',
+        padding: '10px 5px 0px 5px',
         fontSize: '15px',
         border: '1px solid',
-        outline: 'none'
+        outline: 'none',
+        textAlign: 'right'
     };
 
     const onFocus = (event: any) => {

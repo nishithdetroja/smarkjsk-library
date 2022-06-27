@@ -1,4 +1,5 @@
 import React from 'react';
+import "./SmartjkcColorPicker.css";
 
 export interface IInputColorPickerProps {
     name: string;
@@ -42,8 +43,8 @@ const SmartjkcColorPicker: React.FunctionComponent<IInputColorPickerProps> = pro
     };
 
     return (
-        <div>
-            <label style={{ ...labelStyle, ...settings.labelStyle }} htmlFor={name}>{settings.label ? settings.label : 'Label'}-{settings.value}</label>
+        <div style={{position: 'relative'}}>
+            <label style={{ ...labelStyle, ...settings.labelStyle }} htmlFor={name}>{settings.label ? settings.label : 'Label'}</label>
             <input
                 id={settings.id ? settings.id : name}
                 name={name}
@@ -57,6 +58,7 @@ const SmartjkcColorPicker: React.FunctionComponent<IInputColorPickerProps> = pro
                 value={settings.value}
                 onChange={onChangeEvent}
             />
+            <span style={{paddingTop: '15px', position: 'absolute', 'left': '5px'}}>{settings.value}</span>
         </div>
     );
 };
