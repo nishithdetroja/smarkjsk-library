@@ -191,7 +191,7 @@ const App = () => {
     className: "",
     inputStyle: { borderColor: "#3EB489" },
     labelStyle: { color: "#3EB489" },
-    radioLabelStyle: {padding: '5px 10px 5px 10px',verticalAlign: 'top'},
+    radioLabelStyle: { padding: '5px 10px 5px 10px', verticalAlign: 'top' },
     pointerColor: "#3EB489",
     radioHeight: '20px',
     radioWidth: '20px'
@@ -220,7 +220,7 @@ const App = () => {
     className: "",
     inputStyle: { borderColor: "#3EB489" },
     labelStyle: { color: "#3EB489" },
-    checkboxLabelStyle: {padding: '5px 10px 5px 10px',verticalAlign: 'middle'},
+    checkboxLabelStyle: { padding: '5px 10px 5px 10px', verticalAlign: 'middle' },
     pointerColor: "#3EB489",
     pointerHeight: "14px",
     pointerWidth: "7px",
@@ -257,6 +257,32 @@ const App = () => {
     inputStyle: { borderColor: "#3EB489" },
     labelStyle: { color: "#3EB489" }
   });
+  const [settings13, setSettings13] = useState<any>({
+    label: "User Name",
+    value: "Smartjkc",
+    iconShow: true,
+    className: "",
+    inputStyle: { borderColor: "#3EB489" },
+    labelStyle: { color: "#3EB489" }
+  });
+  const [settings14, setSettings14] = useState<any>({
+    label: "Password",
+    value: "Smartjkc",
+    iconShow: false,
+    maxLength: 16,
+    iconShowHideToggle: true,
+    isShowPassword: false,
+    iconToggleStyle: {
+      position: 'absolute',
+      right: '24px',
+      top: '11px',
+      zIndex: '1'
+    },
+    className: "",
+    inputStyle: { borderColor: "#3EB489" },
+    labelStyle: { color: "#3EB489" }
+  });
+
   const onChange = (event: any) => {
     setSettings((prevState: any) => {
       return { ...prevState, value: event.target.value };
@@ -327,14 +353,28 @@ const App = () => {
       return { ...prevState, value: event.target.value };
     });
   };
+  const onChange13 = (event: any) => {
+    setSettings13((prevState: any) => {
+      return { ...prevState, value: event.target.value };
+    });
+  };
+  const onChange14 = (event: any) => {
+    setSettings14((prevState: any) => {
+      return { ...prevState, value: event.target.value };
+    });
+  };
+  const onClick1 = (event: any) => {
+  }
   const onClick = (event: any) => {
-
+    setSettings14((prevState: any) => {
+      return { ...prevState, isShowPassword: event };
+    });
   }
   return (
     <div className="App">
       <div className="row m-5">
         <div className="col-2">
-          <SmartjkcVerticalMenu settings={settings3} onClickEvent={onClick}></SmartjkcVerticalMenu>
+          <SmartjkcVerticalMenu settings={settings3} onClickEvent={onClick1}></SmartjkcVerticalMenu>
         </div>
         <div className="col-10">
           <div className="row">
@@ -367,6 +407,12 @@ const App = () => {
             </div>
             <div className="col-3 mt-2">
               <JkcInput type={'select'} name={"country"} settings={settings11} onChangeEvent={onChange11}></JkcInput>
+            </div>
+            <div className="col-3 mt-2">
+              <JkcInput type={'username'} name={"username"} settings={settings13} onChangeEvent={onChange13}></JkcInput>
+            </div>
+            <div className="col-3 mt-2">
+              <JkcInput type={'password'} name={"password"} settings={settings14} onClickEvent={onClick} onChangeEvent={onChange14}></JkcInput>
             </div>
           </div>
         </div>
