@@ -1,25 +1,7 @@
 import React, { useState } from "react";
-import { SmartjkcMask } from './inputs/SmartjkcMask';
-import { SmartjkcUpDown } from './inputs/SmartjkcUpDown';
-import { default as SmartjkcColorPicker } from './inputs/SmartjkcColorPicker';
-import { default as SmartjkcDatePicker } from './inputs/SmartjkcDatePicker';
-import { default as SmartjkcRadio } from './inputs/SmartjkcRadio';
-import { default as SmartjkcCheckbox } from './inputs/SmartjkcCheckbox';
 import { SmartjkcVerticalMenu } from './components/SmartjkcVerticalMenu/SmartjkcVerticalMenu';
-
-// import {
-//   SmartjkcMask,
-//   SmartjkcNumeric,
-//   SmartjkcUpDown,
-//   SmartjkcColorPicker,
-//   SmartjkcDatePicker,
-//   SmartjkcRadio,
-//   SmartjkcCheckbox,
-//   SmartjkcVerticalMenu
-// } from 'smartjkc';
-
 import "./App.css";
-import { JkcInput } from "./inputs/JksInput";
+import { JkcInput } from "smartjkc";
 
 const App = () => {
   const [settings, setSettings] = useState<any>({
